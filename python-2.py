@@ -1,31 +1,55 @@
-import os 
+import os
 
-def Main():
-    chama_nome_app()
-    lista_opcoes()
+restaurantes = []
 
-def Sair():
+def finalizar_app():
+    os.system("clear")
     os.system("cls")
-    print("Finalizando aplicação\n")
+    print("Finalizando o app\n")
 
-def chama_nome_app():
-    print("Programa Expresso")
+def escolher_opcoes():
+    print("Programa Expresso\n")
+    print("1 - Cadastrar restaurante")
+    print("2 - Listar restaurante")
+    print("3 - Ativar restaurante")
+    print("4 - Sair\n")
 
-def lista_opcoes():
-    print("1- Cadastrar Restaurante")
-    print("2- Listar Restaurante")
-    print("3- Ativar Restaurante")
-    print("4- Sair")
+def opcao_invalida():
+    print("Opção inválida\n")
+    input("Digite uma tecla para voltar ao menu principal: ")
+    main()
 
-if __name__=="__main__":
-    Main()
-    OPCAO_DIGITADA = int(input("Selecione uma opção: "))
+def chamar_nome_do_app():
+    print("Restaurante Expressao\n")
 
-if (OPCAO_DIGITADA == 1):
-    print("Você escolheu a opção cadastrar restaurante")
-elif(OPCAO_DIGITADA == 2):
-    print("Você escolheu a opção Listar restaurante")
-elif(OPCAO_DIGITADA == 3):
-    print("Você escolheu a opção Ativar restaurante")
-elif(OPCAO_DIGITADA == 4):
-    Sair()
+def cadastrar_novo_restaurante():
+    nome_do_restaurante = input("Digite o nome do novo restaurante: ")
+    restaurantes.append(nome_do_restaurante)
+    print(f"Você cadastrou o restaurante: {nome_do_restaurante}")
+    input("Digite uma tecla para voltar para o menu principal:")
+    main()
+   
+
+def main():
+    escolher_opcoes()
+    chamar_nome_do_app()
+    try:
+        opcaodigitada = int(input("Digite a opção desejada: "))
+        if opcaodigitada == 1:
+            print("Você escolheu cadastrar restaurante\n")
+            cadastrar_novo_restaurante()
+        elif opcaodigitada == 2:
+            print("Você escolheu listar restaurante\n")
+        elif opcaodigitada == 3:
+            print("Você escolheu ativar restaurante\n")
+        elif opcaodigitada == 4:
+            print("Você escolheu sair do aplicativo\n")
+            finalizar_app()
+        else:
+            opcao_invalida()
+    except ValueError:
+        opcao_invalida()
+
+if __name__ == "__main__":
+    finalizar_app()
+    main()
